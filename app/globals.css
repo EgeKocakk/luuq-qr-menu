@@ -50,3 +50,19 @@ body {
   background-image: var(--motif-pattern);
   background-repeat: repeat;
 }
+
+/* Sayfada yalnızca .print-card görünür kalır, admin arayüzünün geri kalanı yazdırmada gizlenir. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-card,
+  .print-card * {
+    visibility: visible;
+  }
+  .print-card {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+  }
+}

@@ -9,20 +9,28 @@ export default async function ProtectedAdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
+  let userId: string | undefined;
+  let supabase: Awaited<ReturnType<typeof createClient>>;
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  try {
+    supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    userId = user?.id;
+  } catch {
+    // Supabase henüz yapılandırılmamış (env eksik) — oturum yokmuş gibi davran.
+    redirect("/admin/login");
+  }
 
-  if (!user) {
+  if (!userId) {
     redirect("/admin/login");
   }
 
   const { data: profile } = await supabase
     .from("profiles")
     .select("role")
-    .eq("id", user.id)
+    .eq("id", userId)
     .single();
 
   if (profile?.role !== "admin") {

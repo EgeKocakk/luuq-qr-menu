@@ -103,5 +103,13 @@ export const tr = {
       heroImage: "Hero görseli",
       saved: "Kaydedildi.",
     },
+    qr: {
+      downloadPng: "PNG indir",
+      downloadSvg: "SVG indir",
+      printCardTitle: "Baskıya hazır masa kartı",
+      print: "Yazdır",
+      scanToView: "Menümüz için okutun",
+      altText: "Menü QR kodu",
+    },
   },
 } as const;
