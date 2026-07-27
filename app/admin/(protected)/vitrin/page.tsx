@@ -8,6 +8,7 @@ import { tr } from "@/i18n/tr";
 import type { CategoryWithProducts, ProductWithOptions, Settings } from "@/lib/types";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { ErrorState } from "@/components/ErrorState";
+import { EmptyState } from "@/components/EmptyState";
 
 type LoadState = "loading" | "ready" | "error";
 type Tab = "featured" | "weekly";
@@ -20,6 +21,7 @@ export default function AdminVitrinPage() {
   const [weeklyBrewId, setWeeklyBrewId] = useState<string | null>(null);
   const [loadState, setLoadState] = useState<LoadState>("loading");
   const [savingProductId, setSavingProductId] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
 
   const load = useCallback(async () => {
     setLoadState("loading");
@@ -56,6 +58,11 @@ export default function AdminVitrinPage() {
   );
   const featuredCount = allProducts.filter((p) => p.is_featured).length;
   const weeklyBrewProduct = allProducts.find((p) => p.id === weeklyBrewId) ?? null;
+
+  const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
+  const filteredProducts = normalizedQuery
+    ? allProducts.filter((p) => p.name.toLocaleLowerCase("tr-TR").includes(normalizedQuery))
+    : allProducts;
 
   async function toggleFeatured(product: ProductWithOptions) {
     if (!product.is_featured && featuredCount >= MAX_FEATURED) return;
@@ -120,6 +127,14 @@ export default function AdminVitrinPage() {
         </button>
       </div>
 
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder={tr.admin.vitrin.searchPlaceholder}
+        className="max-w-sm rounded-md border border-gold/30 px-3 py-2 text-sm focus:border-gold focus:outline-none"
+      />
+
       {tab === "featured" ? (
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
@@ -132,8 +147,11 @@ export default function AdminVitrinPage() {
             <p className="text-xs text-terra">{tr.admin.vitrin.featuredMaxReached}</p>
           ) : null}
 
+          {filteredProducts.length === 0 ? (
+            <EmptyState message={tr.menu.emptySearch} />
+          ) : (
           <div className="flex flex-col gap-2">
-            {allProducts.map((product) => {
+            {filteredProducts.map((product) => {
               const disabled = !product.is_featured && featuredCount >= MAX_FEATURED;
               return (
                 <label
@@ -163,6 +181,7 @@ export default function AdminVitrinPage() {
               );
             })}
           </div>
+          )}
         </div>
       ) : (
         <div className="flex flex-col gap-4">
@@ -192,8 +211,11 @@ export default function AdminVitrinPage() {
             )}
           </div>
 
+          {filteredProducts.length === 0 ? (
+            <EmptyState message={tr.menu.emptySearch} />
+          ) : (
           <div className="flex flex-col gap-2">
-            {allProducts.map((product) => {
+            {filteredProducts.map((product) => {
               const isSelected = product.id === weeklyBrewId;
               return (
                 <div
@@ -225,6 +247,7 @@ export default function AdminVitrinPage() {
               );
             })}
           </div>
+          )}
         </div>
       )}
     </div>

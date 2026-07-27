@@ -112,6 +112,7 @@ export const tr = {
       weeklyBrewNone: "Henüz bir ürün seçilmedi.",
       select: "Seç",
       selected: "Seçili",
+      searchPlaceholder: "Ürün ara...",
     },
     settings: {
       title: "Ayarlar",
