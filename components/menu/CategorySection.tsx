@@ -1,39 +1,32 @@
-import type { CategoryWithProducts, ProductWithOptions } from "@/lib/types";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
-import { ProductRow } from "./ProductRow";
+import type { ProductWithOptions } from "@/lib/types";
+import { ProductCard } from "./ProductCard";
 
 export function CategorySection({
-  category,
+  title,
+  products,
   onProductClick,
+  id,
 }: {
-  category: CategoryWithProducts;
+  title: string;
+  products: ProductWithOptions[];
   onProductClick?: (product: ProductWithOptions) => void;
+  id?: string;
 }) {
-  const activeProducts = category.products.filter((p) => p.is_active);
+  const activeProducts = products.filter((p) => p.is_active);
   if (activeProducts.length === 0) return null;
 
   return (
-    <section
-      id={`kategori-${category.id}`}
-      data-category-section
-      data-category-id={category.id}
-      className="scroll-mt-32 py-10"
-    >
-      <RevealOnScroll>
-        <div className="mb-6">
-          <h2 className="font-serif text-2xl tracking-wide text-cream">{category.name}</h2>
-          <span className="mt-2 block h-[3px] w-10 rounded-full bg-gold" />
-        </div>
-        <div className="flex flex-col gap-3">
-          {activeProducts.map((product) => (
-            <ProductRow
-              key={product.id}
-              product={product}
-              onClick={onProductClick ? () => onProductClick(product) : undefined}
-            />
-          ))}
-        </div>
-      </RevealOnScroll>
+    <section id={id} className="flex flex-col gap-3">
+      <h2 className="px-6 font-serif text-xl tracking-wide text-dark">{title}</h2>
+      <div className="no-scrollbar flex snap-x snap-proximity gap-4 overflow-x-auto px-6 pb-1">
+        {activeProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onClick={onProductClick ? () => onProductClick(product) : undefined}
+          />
+        ))}
+      </div>
     </section>
   );
 }

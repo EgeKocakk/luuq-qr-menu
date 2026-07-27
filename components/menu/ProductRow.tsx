@@ -17,7 +17,7 @@ export function ProductRow({
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center gap-4 rounded-lg bg-cream p-4 text-left shadow-[0_1px_3px_rgba(59,42,38,0.08)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(59,42,38,0.12)] active:scale-[0.98]"
+      className="flex w-full items-center gap-4 rounded-lg bg-white p-4 text-left shadow-[0_1px_3px_rgba(59,42,38,0.08)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(59,42,38,0.12)] active:scale-[0.98]"
     >
       <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md">
         {product.image_url ? (

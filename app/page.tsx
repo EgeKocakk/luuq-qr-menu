@@ -1,6 +1,6 @@
 import { getMenuData } from "@/lib/queries";
 import { tr } from "@/i18n/tr";
-import { Hero } from "@/components/menu/Hero";
+import { Header } from "@/components/menu/Header";
 import { AnnouncementBanner } from "@/components/menu/AnnouncementBanner";
 import { MenuExplorer } from "@/components/menu/MenuExplorer";
 import { Footer } from "@/components/menu/Footer";
@@ -13,9 +13,9 @@ export default async function Home() {
     data = await getMenuData();
   } catch {
     return (
-      <div className="flex flex-1 flex-col bg-dark">
-        <Hero />
-        <ErrorState message={tr.menu.error} variant="dark" />
+      <div className="flex flex-1 flex-col bg-cream">
+        <Header />
+        <ErrorState message={tr.menu.error} />
       </div>
     );
   }
@@ -29,14 +29,14 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col">
-      <Hero />
+      <Header />
       {settings?.announcement ? <AnnouncementBanner text={settings.announcement} /> : null}
 
-      <main className="grain-bg flex flex-1 flex-col bg-dark">
+      <main className="grain-bg flex flex-1 flex-col bg-cream">
         {hasAnyProduct ? (
           <MenuExplorer categories={activeCategories} />
         ) : (
-          <EmptyState message={tr.menu.emptyMenu} variant="dark" />
+          <EmptyState message={tr.menu.emptyMenu} />
         )}
       </main>
 
