@@ -32,7 +32,7 @@ export default async function Home() {
       <Hero />
       {settings?.announcement ? <AnnouncementBanner text={settings.announcement} /> : null}
 
-      <main className="flex flex-1 flex-col bg-cream">
+      <main className="grain-bg flex flex-1 flex-col bg-cream">
         {hasAnyProduct ? (
           <MenuExplorer categories={activeCategories} />
         ) : (

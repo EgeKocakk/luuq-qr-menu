@@ -15,12 +15,17 @@
   --color-cream: #f5e9dc;
   --color-cream-dark: #edd9c0;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
 
   /* Fas/zellige esintili geometrik doku — çok düşük opaklıkta, göze batmaz */
   --motif-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='rgba(198,156,109,0.08)' stroke-width='1'%3E%3Crect x='10' y='10' width='44' height='44' transform='rotate(45 32 32)'/%3E%3Crect x='18' y='18' width='28' height='28'/%3E%3Ccircle cx='32' cy='32' r='5' stroke-width='0.75'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Çok hafif kağıt/tekstil doku — krem zeminde düz his yerine dokunsal derinlik */
+  --grain-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.23  0 0 0 0 0.165  0 0 0 0 0.15  0 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -42,13 +47,46 @@
 }
 
 body {
-  background: var(--color-cream);
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-dark) 140%);
   color: var(--color-dark);
 }
 
 .motif-bg {
   background-image: var(--motif-pattern);
   background-repeat: repeat;
+}
+
+.grain-bg {
+  position: relative;
+}
+
+.grain-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-pattern);
+  opacity: 0.05;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+}
+
+.reveal-up.is-visible {
+  animation: reveal-up 0.6s var(--ease-soft) forwards;
 }
 
 .no-scrollbar {

@@ -17,7 +17,7 @@ export function ProductRow({
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center gap-4 rounded-md py-3 text-left transition-colors hover:bg-cream-dark/60"
+      className="flex w-full items-center gap-4 rounded-lg bg-white/40 p-4 text-left shadow-[0_1px_3px_rgba(59,42,38,0.06)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/70 hover:shadow-[0_8px_20px_rgba(59,42,38,0.08)]"
     >
       <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md">
         {product.image_url ? (
@@ -34,12 +34,14 @@ export function ProductRow({
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="font-semibold text-dark">{product.name}</p>
+        <p className="font-medium text-dark">{product.name}</p>
         {product.description ? (
-          <p className="mt-0.5 line-clamp-2 text-sm text-muted">{product.description}</p>
+          <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
+            {product.description}
+          </p>
         ) : null}
         {hasOptions ? (
-          <p className="mt-0.5 text-xs text-gold">{tr.menu.optionsAvailable}</p>
+          <p className="mt-1 text-xs text-muted/80">{tr.menu.optionsAvailable}</p>
         ) : null}
       </div>
 

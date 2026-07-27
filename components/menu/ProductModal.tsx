@@ -72,10 +72,10 @@ export function ProductModal({
 
           {product.product_option_groups.map((group) => (
             <div key={group.id}>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gold">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
                 {group.name}
               </p>
-              <div className="flex flex-col divide-y divide-gold/10">
+              <div className="flex flex-col divide-y divide-dark/5">
                 {group.product_options.map((option) => (
                   <div key={option.id} className="flex items-center justify-between py-1.5 text-sm">
                     <span className="text-dark">
@@ -98,7 +98,7 @@ export function ProductModal({
             </div>
           ))}
 
-          <div className="flex items-center justify-between border-t border-gold/20 pt-4">
+          <div className="flex items-center justify-between border-t border-dark/10 pt-4">
             <span className="text-sm text-muted">{tr.productModal.basePrice}</span>
             <span className="font-serif text-xl text-terra">{formatPrice(product.base_price)}</span>
           </div>
