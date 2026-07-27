@@ -21,7 +21,7 @@ export function CategorySection({
     >
       <RevealOnScroll>
         <div className="mb-6">
-          <h2 className="font-serif text-2xl tracking-wide text-dark">{category.name}</h2>
+          <h2 className="font-serif text-2xl tracking-wide text-cream">{category.name}</h2>
           <span className="mt-2 block h-[3px] w-10 rounded-full bg-gold" />
         </div>
         <div className="flex flex-col gap-3">

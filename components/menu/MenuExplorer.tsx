@@ -83,9 +83,9 @@ export function MenuExplorer({ categories }: { categories: CategoryWithProducts[
       {isSearching ? (
         <div className="mx-auto max-w-2xl px-6 pb-12">
           {searchResults.length === 0 ? (
-            <EmptyState message={tr.menu.emptySearch} />
+            <EmptyState message={tr.menu.emptySearch} variant="dark" />
           ) : (
-            <div className="flex flex-col divide-y divide-gold/15">
+            <div className="flex flex-col gap-3 pt-2">
               {searchResults.map((product) => (
                 <ProductRow
                   key={product.id}

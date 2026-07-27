@@ -13,9 +13,9 @@ export default async function Home() {
     data = await getMenuData();
   } catch {
     return (
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col bg-dark">
         <Hero />
-        <ErrorState message={tr.menu.error} />
+        <ErrorState message={tr.menu.error} variant="dark" />
       </div>
     );
   }
@@ -32,11 +32,11 @@ export default async function Home() {
       <Hero />
       {settings?.announcement ? <AnnouncementBanner text={settings.announcement} /> : null}
 
-      <main className="grain-bg flex flex-1 flex-col bg-cream">
+      <main className="grain-bg flex flex-1 flex-col bg-dark">
         {hasAnyProduct ? (
           <MenuExplorer categories={activeCategories} />
         ) : (
-          <EmptyState message={tr.menu.emptyMenu} />
+          <EmptyState message={tr.menu.emptyMenu} variant="dark" />
         )}
       </main>
 
