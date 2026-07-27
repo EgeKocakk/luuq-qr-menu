@@ -12,7 +12,7 @@ export function ImageUploadField({
 }: {
   value: string | null;
   onChange: (url: string | null) => void;
-  folder: "products" | "hero";
+  folder: "products";
 }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);

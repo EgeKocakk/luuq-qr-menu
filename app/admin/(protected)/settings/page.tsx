@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Settings } from "@/lib/types";
 import { tr } from "@/i18n/tr";
-import { ImageUploadField } from "@/components/admin/ImageUploadField";
+import { PageHeader } from "@/components/admin/PageHeader";
 import { ErrorState } from "@/components/ErrorState";
 
 type LoadState = "loading" | "ready" | "error";
@@ -13,7 +13,6 @@ export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<Settings | null>(null);
   const [loadState, setLoadState] = useState<LoadState>("loading");
   const [announcement, setAnnouncement] = useState("");
-  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [savedMessage, setSavedMessage] = useState<string | null>(null);
 
@@ -30,7 +29,6 @@ export default function AdminSettingsPage() {
     const row = data as Settings;
     setSettings(row);
     setAnnouncement(row.announcement ?? "");
-    setHeroImageUrl(row.hero_image_url ?? null);
     setLoadState("ready");
   }, []);
 
@@ -47,10 +45,7 @@ export default function AdminSettingsPage() {
 
     await supabase
       .from("settings")
-      .update({
-        announcement: announcement.trim() ? announcement : null,
-        hero_image_url: heroImageUrl,
-      })
+      .update({ announcement: announcement.trim() ? announcement : null })
       .eq("id", true);
 
     setSaving(false);
@@ -72,9 +67,12 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="flex flex-col gap-6 p-6">
-      <h1 className="font-serif text-2xl text-dark">{tr.admin.settings.title}</h1>
+      <PageHeader title={tr.admin.settings.title} />
 
-      <form onSubmit={handleSave} className="flex max-w-md flex-col gap-5">
+      <form
+        onSubmit={handleSave}
+        className="flex max-w-md flex-col gap-5 rounded-lg border border-gold/20 bg-white p-5"
+      >
         <div className="flex flex-col gap-1.5">
           <label htmlFor="announcement" className="text-sm font-medium text-dark">
             {tr.admin.settings.announcement}
@@ -90,16 +88,11 @@ export default function AdminSettingsPage() {
           <p className="text-xs text-muted">{tr.admin.settings.announcementHelp}</p>
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-dark">{tr.admin.settings.heroImage}</span>
-          <ImageUploadField value={heroImageUrl} onChange={setHeroImageUrl} folder="hero" />
-        </div>
-
         <div className="flex items-center gap-3">
           <button
             type="submit"
             disabled={saving}
-            className="self-start rounded-md bg-terra px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60"
+            className="self-start rounded-md bg-terra px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-terra/90 disabled:opacity-60"
           >
             {saving ? tr.admin.common.saving : tr.admin.common.save}
           </button>

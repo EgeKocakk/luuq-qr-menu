@@ -10,6 +10,7 @@ export default async function ProtectedAdminLayout({
   children: React.ReactNode;
 }) {
   let userId: string | undefined;
+  let userEmail: string | undefined;
   let supabase: Awaited<ReturnType<typeof createClient>>;
 
   try {
@@ -18,6 +19,7 @@ export default async function ProtectedAdminLayout({
       data: { user },
     } = await supabase.auth.getUser();
     userId = user?.id;
+    userEmail = user?.email;
   } catch {
     // Supabase henüz yapılandırılmamış (env eksik) — oturum yokmuş gibi davran.
     redirect("/admin/login");
@@ -45,7 +47,7 @@ export default async function ProtectedAdminLayout({
 
   return (
     <div className="flex flex-1">
-      <Sidebar />
+      <Sidebar userEmail={userEmail} />
       <main className="flex-1 bg-cream">{children}</main>
     </div>
   );

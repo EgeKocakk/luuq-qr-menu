@@ -6,7 +6,7 @@ const BUCKET = "menu-images";
 export async function uploadMenuImage(
   supabase: SupabaseClient,
   file: File,
-  folder: "products" | "hero",
+  folder: "products",
 ): Promise<string> {
   const resized = await resizeImageFile(file);
   const path = `${folder}/${crypto.randomUUID()}.jpg`;
