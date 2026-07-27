@@ -11,6 +11,8 @@ export const tr = {
   },
   productModal: {
     close: "Kapat",
+    basePrice: "Taban fiyat",
+    defaultOption: "varsayılan",
   },
   footer: {
     poweredBy: "LUUQ Coffee Roastery",

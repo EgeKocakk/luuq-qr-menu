@@ -12,7 +12,12 @@ export function CategorySection({
   if (activeProducts.length === 0) return null;
 
   return (
-    <section id={`kategori-${category.id}`} className="scroll-mt-32 py-8">
+    <section
+      id={`kategori-${category.id}`}
+      data-category-section
+      data-category-id={category.id}
+      className="scroll-mt-32 py-8"
+    >
       <div className="mb-4 flex items-center gap-3">
         <h2 className="font-serif text-2xl text-dark">{category.name}</h2>
         <span className="h-px flex-1 bg-gold/40" />
