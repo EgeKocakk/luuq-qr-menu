@@ -1,7 +1,6 @@
 import { getMenuData } from "@/lib/queries";
 import { tr } from "@/i18n/tr";
 import { Header } from "@/components/menu/Header";
-import { AnnouncementBanner } from "@/components/menu/AnnouncementBanner";
 import { MenuExplorer } from "@/components/menu/MenuExplorer";
 import { Footer } from "@/components/menu/Footer";
 import { EmptyState } from "@/components/EmptyState";
@@ -30,11 +29,10 @@ export default async function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <Header />
-      {settings?.announcement ? <AnnouncementBanner text={settings.announcement} /> : null}
 
       <main className="grain-bg flex flex-1 flex-col bg-cream">
         {hasAnyProduct ? (
-          <MenuExplorer categories={activeCategories} />
+          <MenuExplorer categories={activeCategories} announcement={settings?.announcement ?? null} />
         ) : (
           <EmptyState message={tr.menu.emptyMenu} />
         )}

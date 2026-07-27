@@ -1,13 +1,32 @@
-import { Logo } from "@/components/Logo";
 import { tr } from "@/i18n/tr";
 
 export function Header() {
   return (
-    <header className="flex items-center gap-2 bg-cream px-4 pb-2 pt-2">
-      <Logo className="!h-9 !w-auto" />
-      <div className="flex flex-col gap-0.5">
-        <span className="font-serif text-[22px] leading-7 text-dark">LUUQ Coffee</span>
-        <span className="text-xs leading-4 text-muted">{tr.menu.branch}</span>
+    <header className="flex flex-col gap-3 px-4 pb-2 pt-4">
+      <div className="flex items-center justify-center">
+        {/* Kaynak PNG altın renginde — koyu renge boyamak için görseli CSS mask
+            olarak kullanıp arkasına düz koyu renk koyuyoruz. */}
+        <span
+          role="img"
+          aria-label="LUUQ"
+          className="h-[51px] w-[100px] bg-dark"
+          style={{
+            maskImage: "url(/luuq-logo-mark.png)",
+            maskSize: "contain",
+            maskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskImage: "url(/luuq-logo-mark.png)",
+            WebkitMaskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskPosition: "center",
+          }}
+        />
+      </div>
+
+      <div className="mx-4 rounded-lg border border-gold/30 bg-white px-4 py-2">
+        <span className="text-[10px] font-semibold uppercase tracking-[1.5px] text-muted">
+          {tr.menu.branch}
+        </span>
       </div>
     </header>
   );

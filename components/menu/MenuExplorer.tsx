@@ -4,12 +4,22 @@ import { useMemo, useState } from "react";
 import type { CategoryWithProducts, ProductWithOptions } from "@/lib/types";
 import { tr } from "@/i18n/tr";
 import { SearchBar } from "./SearchBar";
+import { CampaignBanner } from "./CampaignBanner";
+import { FavoritesRow } from "./FavoritesRow";
+import { StampCard } from "./StampCard";
+import { WeeklyBrewCard } from "./WeeklyBrewCard";
 import { CategorySection } from "./CategorySection";
 import { ProductRow } from "./ProductRow";
 import { ProductModal } from "./ProductModal";
 import { EmptyState } from "@/components/EmptyState";
 
-export function MenuExplorer({ categories }: { categories: CategoryWithProducts[] }) {
+export function MenuExplorer({
+  categories,
+  announcement,
+}: {
+  categories: CategoryWithProducts[];
+  announcement: string | null;
+}) {
   const [query, setQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<ProductWithOptions | null>(null);
 
@@ -17,6 +27,8 @@ export function MenuExplorer({ categories }: { categories: CategoryWithProducts[
     () => categories.flatMap((c) => c.products.filter((p) => p.is_active && p.is_featured)),
     [categories],
   );
+  const weeklyBrew = featuredProducts[0] ?? null;
+  const favorites = featuredProducts.slice(1);
 
   const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
   const searchResults = useMemo(() => {
@@ -55,12 +67,14 @@ export function MenuExplorer({ categories }: { categories: CategoryWithProducts[
         </div>
       ) : (
         <div className="flex flex-col gap-6 pb-12">
-          {featuredProducts.length > 0 ? (
-            <CategorySection
-              title={tr.menu.featuredTitle}
-              products={featuredProducts}
-              onProductClick={setSelectedProduct}
-            />
+          {announcement ? <CampaignBanner text={announcement} /> : null}
+
+          <FavoritesRow products={favorites} onProductClick={setSelectedProduct} />
+
+          <StampCard />
+
+          {weeklyBrew ? (
+            <WeeklyBrewCard product={weeklyBrew} onClick={() => setSelectedProduct(weeklyBrew)} />
           ) : null}
 
           {categories.map((category) => (

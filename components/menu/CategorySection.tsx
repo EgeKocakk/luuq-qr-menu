@@ -1,5 +1,6 @@
+import { formatPrice } from "@/lib/money";
 import type { ProductWithOptions } from "@/lib/types";
-import { ProductCard } from "./ProductCard";
+import { ProductVisual } from "./ProductVisual";
 
 export function CategorySection({
   title,
@@ -16,15 +17,33 @@ export function CategorySection({
   if (activeProducts.length === 0) return null;
 
   return (
-    <section id={id} className="flex flex-col gap-2">
-      <h2 className="px-4 font-serif text-[22px] leading-7 text-dark">{title}</h2>
-      <div className="no-scrollbar flex snap-x snap-proximity gap-3 overflow-x-auto px-4 pb-1">
+    <section id={id} className="flex flex-col gap-2 px-4">
+      <p className="text-[10px] font-semibold uppercase tracking-[2px] text-muted">{title}</p>
+      <div>
         {activeProducts.map((product) => (
-          <ProductCard
+          <button
             key={product.id}
-            product={product}
-            onClick={onProductClick ? () => onProductClick(product) : undefined}
-          />
+            type="button"
+            onClick={() => onProductClick?.(product)}
+            className="flex w-full items-center gap-3 border-b border-gold/20 py-3 text-left last:border-b-0"
+          >
+            <ProductVisual
+              imageUrl={product.image_url}
+              name={product.name}
+              className="h-20 w-20 shrink-0 rounded-md bg-cream-dark"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="text-[14.5px] font-medium text-dark">{product.name}</p>
+              {product.description ? (
+                <p className="mt-1 line-clamp-2 text-xs font-light leading-4 text-muted">
+                  {product.description}
+                </p>
+              ) : null}
+            </div>
+            <span className="shrink-0 text-[14.5px] font-semibold tabular-nums text-dark">
+              {formatPrice(product.base_price)}
+            </span>
+          </button>
         ))}
       </div>
     </section>
