@@ -62,7 +62,6 @@ export function ProductFormModal({
   );
   const [imageUrl, setImageUrl] = useState<string | null>(product?.image_url ?? null);
   const [isActive, setIsActive] = useState(product?.is_active ?? true);
-  const [isFeatured, setIsFeatured] = useState(product?.is_featured ?? false);
   const [groups, setGroups] = useState<DraftGroup[]>(toDraftGroups(product));
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -128,7 +127,6 @@ export function ProductFormModal({
       base_price: priceLira.trim() ? liraToCents(Number(priceLira)) : 0,
       image_url: imageUrl,
       is_active: isActive,
-      is_featured: isFeatured,
     };
 
     let productId = product?.id;
@@ -269,14 +267,6 @@ export function ProductFormModal({
         <label className="flex items-center gap-2 text-sm text-dark">
           <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />
           {tr.admin.productForm.isActive}
-        </label>
-        <label className="flex items-center gap-2 text-sm text-dark">
-          <input
-            type="checkbox"
-            checked={isFeatured}
-            onChange={(e) => setIsFeatured(e.target.checked)}
-          />
-          {tr.admin.productForm.isFeatured}
         </label>
 
         <div className="border-t border-gold/20 pt-4">

@@ -23,7 +23,7 @@ export function Header() {
         />
       </div>
 
-      <div className="mx-4 rounded-lg border border-gold/30 bg-white px-4 py-2">
+      <div className="rounded-lg border border-gold/30 bg-white px-4 py-2">
         <span className="text-[10px] font-semibold uppercase tracking-[1.5px] text-muted">
           {tr.menu.branch}
         </span>

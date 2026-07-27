@@ -16,9 +16,11 @@ import { EmptyState } from "@/components/EmptyState";
 export function MenuExplorer({
   categories,
   announcement,
+  weeklyBrewProduct,
 }: {
   categories: CategoryWithProducts[];
   announcement: string | null;
+  weeklyBrewProduct: ProductWithOptions | null;
 }) {
   const [query, setQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<ProductWithOptions | null>(null);
@@ -30,8 +32,6 @@ export function MenuExplorer({
     () => categories.flatMap((c) => c.products.filter((p) => p.is_active && p.is_featured)),
     [categories],
   );
-  const weeklyBrew = featuredProducts[0] ?? null;
-  const favorites = featuredProducts.slice(1);
 
   const selectedCategory = categories.find((c) => c.id === selectedCategoryId) ?? null;
 
@@ -74,10 +74,13 @@ export function MenuExplorer({
         <div className="flex flex-col gap-6 pb-12">
           {announcement ? <CampaignBanner text={announcement} /> : null}
 
-          <FavoritesRow products={favorites} onProductClick={setSelectedProduct} />
+          <FavoritesRow products={featuredProducts} onProductClick={setSelectedProduct} />
 
-          {weeklyBrew ? (
-            <WeeklyBrewCard product={weeklyBrew} onClick={() => setSelectedProduct(weeklyBrew)} />
+          {weeklyBrewProduct ? (
+            <WeeklyBrewCard
+              product={weeklyBrewProduct}
+              onClick={() => setSelectedProduct(weeklyBrewProduct)}
+            />
           ) : null}
 
           <div className="flex flex-col gap-4">

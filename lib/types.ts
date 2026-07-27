@@ -50,5 +50,6 @@ export type Settings = {
   id: true;
   announcement: string | null;
   hero_image_url: string | null;
+  weekly_brew_product_id: string | null;
   updated_at: string;
 };

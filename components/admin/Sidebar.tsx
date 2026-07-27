@@ -20,6 +20,15 @@ const links = [
     ),
   },
   {
+    href: "/admin/vitrin",
+    label: tr.admin.sidebar.vitrin,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2.5 14.9 8.4 21.4 9.3 16.7 13.9 17.8 20.4 12 17.3 6.2 20.4 7.3 13.9 2.6 9.3 9.1 8.4Z" />
+      </svg>
+    ),
+  },
+  {
     href: "/admin/qr",
     label: tr.admin.sidebar.qr,
     icon: (
@@ -51,8 +60,8 @@ export function Sidebar({ userEmail }: { userEmail?: string }) {
   return (
     <aside className="flex w-56 shrink-0 flex-col justify-between border-r border-gold/20 bg-dark p-4 text-cream">
       <nav className="flex flex-col gap-1">
-        <div className="mb-6 px-2">
-          <Logo className="!h-8 !w-auto" />
+        <div className="mb-6 flex justify-center">
+          <Logo className="!h-12 !w-auto" />
         </div>
         {links.map((link) => {
           const isActive = pathname?.startsWith(link.href);

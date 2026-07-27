@@ -15,7 +15,7 @@ export function FavoritesRow({
   return (
     <div className="flex flex-col gap-2">
       <p className="px-4 text-[10px] font-semibold uppercase tracking-[2px] text-muted">
-        {tr.menu.favoritesTitle}
+        {tr.menu.featuredTitle}
       </p>
       <div className="no-scrollbar flex gap-3 overflow-x-auto px-4">
         {products.map((product) => (

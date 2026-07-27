@@ -9,7 +9,6 @@ export const tr = {
     emptySearch: "Aradığın ürün bulunamadı.",
     error: "Menü yüklenirken bir sorun oluştu.",
     retry: "Tekrar dene",
-    favoritesTitle: "Favorilerim",
     weeklyBrewLabel: "Bu haftanın demlemesi",
   },
   productModal: {
@@ -38,6 +37,7 @@ export const tr = {
     },
     sidebar: {
       menu: "Menü Yönetimi",
+      vitrin: "Vitrin",
       qr: "QR Kod",
       settings: "Ayarlar",
       logout: "Çıkış yap",
@@ -84,7 +84,6 @@ export const tr = {
       removeImage: "Kaldır",
       uploading: "Yükleniyor...",
       isActive: "Aktif (menüde görünür)",
-      isFeatured: "Öne çıkanlarda göster",
       options: {
         title: "Opsiyon Grupları",
         add: "Grup Ekle",
@@ -99,6 +98,20 @@ export const tr = {
         isDefault: "Varsayılan",
         remove: "Kaldır",
       },
+    },
+    vitrin: {
+      title: "Vitrin",
+      description: "Müşteri menüsündeki öne çıkan ürünleri ve haftanın demlemesini buradan yönetirsin.",
+      tabFeatured: "Öne Çıkanlar",
+      tabWeeklyBrew: "Haftanın Demlemesi",
+      featuredHelp: "Menüdeki \"Öne Çıkanlar\" sırasında gösterilecek en fazla 8 ürünü seç.",
+      featuredCount: (count: number) => `${count} / 8 seçili`,
+      featuredMaxReached: "En fazla 8 ürün seçebilirsin. Önce birini kaldır.",
+      weeklyBrewHelp: "Seçtiğin ürün menüdeki \"Bu haftanın demlemesi\" kartında görünür.",
+      weeklyBrewCurrent: "Şu anki seçim",
+      weeklyBrewNone: "Henüz bir ürün seçilmedi.",
+      select: "Seç",
+      selected: "Seçili",
     },
     settings: {
       title: "Ayarlar",

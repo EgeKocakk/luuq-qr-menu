@@ -26,13 +26,22 @@ export default async function Home() {
     .filter((c) => c.products.length > 0);
   const hasAnyProduct = activeCategories.length > 0;
 
+  const weeklyBrewProduct =
+    activeCategories
+      .flatMap((c) => c.products)
+      .find((p) => p.id === settings?.weekly_brew_product_id) ?? null;
+
   return (
     <div className="flex flex-1 flex-col">
       <Header />
 
       <main className="grain-bg flex flex-1 flex-col bg-cream">
         {hasAnyProduct ? (
-          <MenuExplorer categories={activeCategories} announcement={settings?.announcement ?? null} />
+          <MenuExplorer
+            categories={activeCategories}
+            announcement={settings?.announcement ?? null}
+            weeklyBrewProduct={weeklyBrewProduct}
+          />
         ) : (
           <EmptyState message={tr.menu.emptyMenu} />
         )}
