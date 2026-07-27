@@ -8,7 +8,7 @@ export function SearchBar({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="px-6 py-4">
+    <div className="px-4 py-2">
       <input
         type="search"
         value={value}

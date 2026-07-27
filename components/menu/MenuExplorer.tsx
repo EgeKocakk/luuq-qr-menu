@@ -38,7 +38,7 @@ export function MenuExplorer({ categories }: { categories: CategoryWithProducts[
       <SearchBar value={query} onChange={setQuery} />
 
       {isSearching ? (
-        <div className="mx-auto max-w-2xl px-6 pb-12">
+        <div className="mx-auto max-w-2xl px-4 pb-12">
           {searchResults.length === 0 ? (
             <EmptyState message={tr.menu.emptySearch} />
           ) : (
@@ -54,7 +54,7 @@ export function MenuExplorer({ categories }: { categories: CategoryWithProducts[
           )}
         </div>
       ) : (
-        <div className="flex flex-col gap-8 pb-12">
+        <div className="flex flex-col gap-6 pb-12">
           {featuredProducts.length > 0 ? (
             <CategorySection
               title={tr.menu.featuredTitle}

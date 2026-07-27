@@ -14,22 +14,22 @@ export function ProductCard({
     <button
       type="button"
       onClick={onClick}
-      className="w-36 shrink-0 snap-start text-left active:scale-[0.97]"
+      className="flex w-[140px] shrink-0 snap-start flex-col gap-1 text-left active:scale-[0.97]"
     >
-      <div className="mb-2 aspect-square w-full overflow-hidden rounded-md">
+      <div className="aspect-square w-full overflow-hidden rounded-[10px] bg-cream-dark">
         {product.image_url ? (
           <Image
             src={product.image_url}
             alt={product.name}
-            width={144}
-            height={144}
+            width={140}
+            height={140}
             className="h-full w-full object-cover"
           />
         ) : (
           <ProductImagePlaceholder className="h-full w-full" />
         )}
       </div>
-      <p className="truncate text-sm font-semibold text-dark">{product.name}</p>
+      <p className="truncate text-[15px] font-semibold text-dark">{product.name}</p>
       <p className="text-xs text-muted">{formatPrice(product.base_price)}</p>
     </button>
   );
