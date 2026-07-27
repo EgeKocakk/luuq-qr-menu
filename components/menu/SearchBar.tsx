@@ -14,7 +14,7 @@ export function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={tr.menu.searchPlaceholder}
-        className="w-full rounded-lg border border-gold/20 bg-cream/10 px-4 py-3 text-cream placeholder:text-cream/40 transition-colors focus:border-gold/50 focus:outline-none"
+        className="w-full rounded-lg border border-gold/20 bg-cream px-4 py-3 text-dark placeholder:text-muted transition-colors focus:border-gold focus:outline-none"
       />
     </div>
   );
