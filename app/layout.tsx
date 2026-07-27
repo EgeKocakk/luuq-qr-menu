@@ -15,8 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LUUQ Coffee — Menü",
-  description: "Fas'ın ruhu, Türkiye'nin kalbinde. LUUQ Coffee dijital menüsü.",
+  title: "LUUQ Coffee — Elvankent Şubesi | Menü",
+  description:
+    "Fas'ın ruhu, Türkiye'nin kalbinde. LUUQ Coffee Elvankent şubesi dijital menüsü.",
 };
 
 export default function RootLayout({

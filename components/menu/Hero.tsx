@@ -18,6 +18,9 @@ export function Hero() {
 
       <div className="relative flex flex-col items-center gap-6">
         <Logo />
+        <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
+          {tr.menu.branch}
+        </span>
         <p className="max-w-xs font-serif text-xl italic text-cream/90">{tr.menu.slogan}</p>
       </div>
     </section>

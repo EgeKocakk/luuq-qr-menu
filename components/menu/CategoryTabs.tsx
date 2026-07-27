@@ -31,7 +31,10 @@ export function CategoryTabs({
 
   return (
     <nav className="sticky top-0 z-10 bg-cream/95 backdrop-blur">
-      <div ref={containerRef} className="no-scrollbar relative flex gap-6 overflow-x-auto px-6 py-4">
+      <div
+        ref={containerRef}
+        className="no-scrollbar relative flex snap-x snap-proximity gap-6 overflow-x-auto px-6 py-2"
+      >
         {categories.map((category) => {
           const isActive = category.id === activeCategoryId;
           return (
@@ -42,7 +45,7 @@ export function CategoryTabs({
               }}
               type="button"
               onClick={() => onSelect(category.id)}
-              className={`shrink-0 whitespace-nowrap pb-2 text-sm font-medium transition-colors duration-300 ${
+              className={`shrink-0 snap-start whitespace-nowrap py-3 text-sm font-medium transition-colors duration-300 active:scale-[0.97] ${
                 isActive ? "text-terra" : "text-muted/70 hover:text-dark"
               }`}
             >

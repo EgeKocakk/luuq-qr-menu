@@ -20,7 +20,10 @@ export function CategorySection({
       className="scroll-mt-32 py-10"
     >
       <RevealOnScroll>
-        <h2 className="mb-6 font-serif text-2xl tracking-wide text-dark">{category.name}</h2>
+        <div className="mb-6">
+          <h2 className="font-serif text-2xl tracking-wide text-dark">{category.name}</h2>
+          <span className="mt-2 block h-[3px] w-10 rounded-full bg-gold" />
+        </div>
         <div className="flex flex-col gap-3">
           {activeProducts.map((product) => (
             <ProductRow

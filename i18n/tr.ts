@@ -1,5 +1,6 @@
 export const tr = {
   menu: {
+    branch: "Elvankent Şubesi",
     slogan: "Fas'ın ruhu, Türkiye'nin kalbinde.",
     searchPlaceholder: "Menüde ara...",
     featuredTitle: "Öne Çıkanlar",
@@ -16,6 +17,7 @@ export const tr = {
   },
   footer: {
     poweredBy: "LUUQ Coffee Roastery",
+    branch: "Elvankent Şubesi",
   },
   admin: {
     login: {
