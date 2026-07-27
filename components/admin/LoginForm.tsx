@@ -18,7 +18,10 @@ export function LoginForm() {
     setError(null);
 
     const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
+    });
 
     if (signInError) {
       setError(
@@ -45,6 +48,10 @@ export function LoginForm() {
           type="email"
           required
           autoComplete="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          inputMode="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="rounded-md border border-gold/30 bg-cream/10 px-3 py-2 text-cream placeholder:text-cream/40 focus:border-gold focus:outline-none"
@@ -60,6 +67,9 @@ export function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="rounded-md border border-gold/30 bg-cream/10 px-3 py-2 text-cream placeholder:text-cream/40 focus:border-gold focus:outline-none"
