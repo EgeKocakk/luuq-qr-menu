@@ -77,6 +77,7 @@ export const tr = {
       price: "Fiyat (₺)",
       image: "Görsel",
       uploadImage: "Görsel yükle",
+      removeImage: "Kaldır",
       uploading: "Yükleniyor...",
       isActive: "Aktif (menüde görünür)",
       isFeatured: "Öne çıkanlarda göster",

@@ -11,7 +11,7 @@ export function ImageUploadField({
   folder,
 }: {
   value: string | null;
-  onChange: (url: string) => void;
+  onChange: (url: string | null) => void;
   folder: "products" | "hero";
 }) {
   const [uploading, setUploading] = useState(false);
@@ -56,6 +56,16 @@ export function ImageUploadField({
           className="hidden"
         />
       </label>
+
+      {value ? (
+        <button
+          type="button"
+          onClick={() => onChange(null)}
+          className="text-sm text-red-600 hover:underline"
+        >
+          {tr.admin.productForm.removeImage}
+        </button>
+      ) : null}
 
       {error ? <span className="text-xs text-red-600">{error}</span> : null}
     </div>
