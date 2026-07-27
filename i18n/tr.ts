@@ -11,9 +11,6 @@ export const tr = {
     retry: "Tekrar dene",
     favoritesTitle: "Favorilerim",
     weeklyBrewLabel: "Bu haftanın demlemesi",
-    stampCardLabel: "Damga kartın",
-    stampCardReady: (reward: string) => `Ödülün hazır: ${reward}`,
-    stampCardRemaining: (remaining: number) => `${remaining} kahve daha, sonrası bizden.`,
   },
   productModal: {
     close: "Kapat",

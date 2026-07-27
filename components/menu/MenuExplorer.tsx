@@ -6,8 +6,8 @@ import { tr } from "@/i18n/tr";
 import { SearchBar } from "./SearchBar";
 import { CampaignBanner } from "./CampaignBanner";
 import { FavoritesRow } from "./FavoritesRow";
-import { StampCard } from "./StampCard";
 import { WeeklyBrewCard } from "./WeeklyBrewCard";
+import { CategoryPills } from "./CategoryPills";
 import { CategorySection } from "./CategorySection";
 import { ProductRow } from "./ProductRow";
 import { ProductModal } from "./ProductModal";
@@ -22,6 +22,9 @@ export function MenuExplorer({
 }) {
   const [query, setQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<ProductWithOptions | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    categories[0]?.id ?? null,
+  );
 
   const featuredProducts = useMemo(
     () => categories.flatMap((c) => c.products.filter((p) => p.is_active && p.is_featured)),
@@ -29,6 +32,8 @@ export function MenuExplorer({
   );
   const weeklyBrew = featuredProducts[0] ?? null;
   const favorites = featuredProducts.slice(1);
+
+  const selectedCategory = categories.find((c) => c.id === selectedCategoryId) ?? null;
 
   const normalizedQuery = query.trim().toLocaleLowerCase("tr-TR");
   const searchResults = useMemo(() => {
@@ -71,20 +76,25 @@ export function MenuExplorer({
 
           <FavoritesRow products={favorites} onProductClick={setSelectedProduct} />
 
-          <StampCard />
-
           {weeklyBrew ? (
             <WeeklyBrewCard product={weeklyBrew} onClick={() => setSelectedProduct(weeklyBrew)} />
           ) : null}
 
-          {categories.map((category) => (
-            <CategorySection
-              key={category.id}
-              title={category.name}
-              products={category.products}
-              onProductClick={setSelectedProduct}
+          <div className="flex flex-col gap-4">
+            <CategoryPills
+              categories={categories}
+              selectedCategoryId={selectedCategoryId}
+              onSelect={setSelectedCategoryId}
             />
-          ))}
+
+            {selectedCategory ? (
+              <CategorySection
+                title={selectedCategory.name}
+                products={selectedCategory.products}
+                onProductClick={setSelectedProduct}
+              />
+            ) : null}
+          </div>
         </div>
       )}
 
