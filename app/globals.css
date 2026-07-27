@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
+/*
+ * LUUQ marka tokenları — https://luuqcoffee.com sitesinin yayınlanmış
+ * CSS'inden (:root değişkenleri) okunan hex değerlerin tek kaynağı.
+ * Token dışı hardcoded renk kullanılmaz.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-dark: #3b2a26;
+  --color-mid: #5c3d2e;
+  --color-terra: #a44a3f;
+  --color-gold: #c69c6d;
+  --color-gold-light: #d4af7a;
+  --color-muted: #8b6b55;
+  --color-cream: #f5e9dc;
+  --color-cream-dark: #edd9c0;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Fas/zellige esintili geometrik doku — çok düşük opaklıkta, göze batmaz */
+  --motif-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='rgba(198,156,109,0.08)' stroke-width='1'%3E%3Crect x='10' y='10' width='44' height='44' transform='rotate(45 32 32)'/%3E%3Crect x='18' y='18' width='28' height='28'/%3E%3Ccircle cx='32' cy='32' r='5' stroke-width='0.75'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-dark: var(--color-dark);
+  --color-mid: var(--color-mid);
+  --color-terra: var(--color-terra);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-muted: var(--color-muted);
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --font-serif: var(--font-playfair-display), serif;
+  --font-sans: var(--font-inter), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-dark);
+}
+
+.motif-bg {
+  background-image: var(--motif-pattern);
+  background-repeat: repeat;
 }
