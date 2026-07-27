@@ -13,7 +13,7 @@ export function CategoryTabs({
 }) {
   return (
     <nav className="sticky top-0 z-10 border-b border-gold/20 bg-cream/95 backdrop-blur">
-      <div className="flex gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none]">
+      <div className="no-scrollbar flex gap-2 overflow-x-auto px-4 py-3">
         {categories.map((category) => {
           const isActive = category.id === activeCategoryId;
           return (

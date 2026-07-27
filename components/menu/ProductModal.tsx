@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import Image from "next/image";
 import { formatPrice } from "@/lib/money";
 import type { ProductWithOptions } from "@/lib/types";
@@ -11,6 +14,21 @@ export function ProductModal({
   product: ProductWithOptions;
   onClose: () => void;
 }) {
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
     <div className="fixed inset-0 z-20 flex items-end justify-center bg-dark/60 sm:items-center">
       <button
@@ -20,7 +38,7 @@ export function ProductModal({
         className="absolute inset-0"
       />
 
-      <div className="relative flex max-h-[85vh] w-full max-w-md flex-col overflow-y-auto rounded-t-lg bg-cream sm:rounded-lg">
+      <div className="animate-sheet-in relative flex max-h-[85vh] w-full max-w-md flex-col overflow-y-auto rounded-t-lg bg-cream sm:rounded-lg">
         <button
           type="button"
           onClick={onClose}

@@ -16,7 +16,7 @@ export function FeaturedSection({
   return (
     <section className="bg-cream-dark/50 py-6">
       <h2 className="mb-3 px-6 font-serif text-xl text-dark">{tr.menu.featuredTitle}</h2>
-      <div className="flex gap-4 overflow-x-auto px-6 pb-1 [scrollbar-width:none]">
+      <div className="no-scrollbar flex gap-4 overflow-x-auto px-6 pb-1">
         {products.map((product) => (
           <button
             key={product.id}

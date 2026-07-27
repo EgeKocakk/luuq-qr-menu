@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect } from "react";
+
 export function Modal({
   title,
   onClose,
@@ -7,11 +11,19 @@ export function Modal({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <div className="fixed inset-0 z-20 flex items-center justify-center bg-dark/60 p-4">
       <button type="button" aria-label="Kapat" onClick={onClose} className="absolute inset-0" />
 
-      <div className="relative flex max-h-[85vh] w-full max-w-md flex-col overflow-y-auto rounded-lg bg-cream p-6">
+      <div className="animate-sheet-in relative flex max-h-[85vh] w-full max-w-md flex-col overflow-y-auto rounded-lg bg-cream p-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-serif text-xl text-dark">{title}</h2>
           <button
